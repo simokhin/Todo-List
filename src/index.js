@@ -30,4 +30,16 @@ function dom() {
     
         div.append (taskName, taskDate, taskPriority);
     })
+
+    const addTaskButton = document.querySelector(".add-task-but");
+    addTaskButton.addEventListener("click", () => {
+        const addTaskForm = document.querySelector(".add-task");
+        addTaskForm.setAttribute("style","visibility: visible");
+    })
+
+    const hideButton = document.querySelector(".hide");
+    hideButton.addEventListener("click", () => {
+        const addTaskForm = document.querySelector(".add-task");
+        addTaskForm.setAttribute("style","visibility: hidden");
+    })
 }

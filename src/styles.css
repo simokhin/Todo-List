@@ -127,7 +127,7 @@ a:hover {
     color: red;
 }
 
-.sidebar2 button {
+.add-task-but {
     font-family: var(--opensans);
     padding: 0.25rem 1rem;
     border: none;
@@ -136,9 +136,61 @@ a:hover {
     margin-top: 1.8rem;
     margin-left: 3rem;
     border-radius: 5px;
+    font-weight: bold;
 }
 
-.sidebar2 button:hover {
+.add-task-but:hover {
     background-color: var(--hover);
+    cursor: pointer;
+}
+
+.add-task {
+    margin-top: 1.5rem;
+    margin-left: 3rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+form legend {
+    margin-bottom: 1rem;
+    font-family: var(--montserrat);
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text);
+}
+
+form input {
+    border-radius: 5px;
+    border: 1px solid #d4d4d4;
+}
+
+.buttons {
+    gap: 0.5rem;
+    flex-direction: row;
+}
+
+form button {
+    border: none;
+    background-color: var(--accent2);
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+
+.add {
+    background-color: var(--accent1);
+    color: var(--background);
+}
+
+form button:hover {
+    opacity: 0.7;
     cursor: pointer;
 }
