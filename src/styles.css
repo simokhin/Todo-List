@@ -54,7 +54,7 @@ body {
 }
 
 .projects-header button {
-    background-color: var(--accent2);
+    background-color: var(--background);
     border: none;
     border-radius: 5px;
     color: var(--accent1);
@@ -94,9 +94,10 @@ a:hover {
     width: 50%;
 }
 
+
 .todolist {
+    margin-top: 1rem;
     width: 100%;
-    margin-top: 5.5rem;
     display: flex;
     flex-direction: column;
     padding-left: 5rem;
@@ -124,4 +125,20 @@ a:hover {
 
 .high {
     color: red;
+}
+
+.sidebar2 button {
+    font-family: var(--opensans);
+    padding: 0.25rem 1rem;
+    border: none;
+    background-color: var(--accent1);
+    color: var(--background);
+    margin-top: 1.8rem;
+    margin-left: 3rem;
+    border-radius: 5px;
+}
+
+.sidebar2 button:hover {
+    background-color: var(--hover);
+    cursor: pointer;
 }
