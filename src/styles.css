@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --background: #F5F5F5;
+    --accent1: #4A90E2;
+    --accent2: #50E3C2;
+    --text: #333333;
+    --hover: #E94E77;
+    --important: #FF6F61;
+    --montserrat: "Montserrat", sans-serif;
+    --opensans: "Open Sans", sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    font-family: var(--montserrat);
+    font-optical-sizing: auto;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    width: 15%;
+    background-color: var(--accent1);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.title {
+    color: var(--background);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.title:hover {
+    cursor: default;
+}
+
+.projects-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.projects-header h1 {
+    font-size: 1.25rem;
+    color: var(--background);
+}
+
+.projects-header button {
+    background-color: var(--accent2);
+    border: none;
+    border-radius: 5px;
+    color: var(--accent1);
+    font-weight: bold;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.projects-header button:hover {
+    cursor: pointer;
+    background-color: var(--hover);
+    color: var(--background);
+}
+
+.projects ul {
+    font-size: 1rem;
+    font-family: var(--opensans);
+    padding: 0;
+    color: var(--background);
+    list-style-type: none;
+}
+
+ul li {
+    margin-bottom: 0.2rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--background);
+}
+
+a:hover {
+    opacity: 0.9;
+}
+
+.content {
+    width: 50%;
+}
+
+.todolist {
+    width: 100%;
+    margin-top: 5.5rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5rem;
+    gap: 1rem;
+    font-family: var(--opensans);
+}
+
+
+.list-row {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+    grid-template-columns: 1fr 100px 100px 50px;
+    padding: 1rem;
+}
+
+.back {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.high {
+    color: red;
+}
