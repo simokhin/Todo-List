@@ -105,6 +105,14 @@ a:hover {
     font-family: var(--opensans);
 }
 
+.list-row-header {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+    grid-template-columns: 1fr 100px 100px 50px;
+    padding: 1rem;
+    align-items: center;
+}
 
 .list-row {
     display: grid;
@@ -112,6 +120,7 @@ a:hover {
     width: 100%;
     grid-template-columns: 1fr 100px 100px 50px;
     padding: 1rem;
+    align-items: center;
 }
 
 .back {
@@ -119,12 +128,28 @@ a:hover {
     border-radius: 10px;
 }
 
+
 .strong {
     font-weight: bold;
 }
 
-.high {
-    color: red;
+.check {
+    background-color: white;
+    border: 1px solid var(--text);
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+    border-radius: 50%;
+}
+
+
+.check:hover {
+    cursor: pointer;
+}
+
+.check:active {
+    background-color: lightgreen;
+    transition: all .2s;
 }
 
 .add-task-but {

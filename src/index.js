@@ -3,10 +3,9 @@ import "./styles.css";
 
 import { ToDo, toDoList, addTask } from "./todo.js";
 
-//const task1 = new ToDo("Сделай дело - гуляй смело", "20.12.24", "High");
-//addTask(task1);
 dom();
 updateDom();
+completeTask();
 
 function dom() {
     const addTaskButton = document.querySelector(".add-task-but");
@@ -26,6 +25,7 @@ function dom() {
         let newTask = new ToDo(taskNameForm.value, taskDateForm.value, taskPriorityForm.value);
         addTask(newTask);
         createNewTask(toDoList);
+        completeTask();
     })
 
     const hideButton = document.querySelector(".hide");
@@ -42,6 +42,7 @@ function updateDom(){
         const div = document.createElement("div");
         div.classList.add("list-row");
         div.classList.add("back");
+        div.setAttribute("id", `${task.id}`);
         list.appendChild(div);
     
         const taskName = document.createElement("div");
@@ -56,8 +57,13 @@ function updateDom(){
         taskPriority.classList.add("priority");
         taskPriority.textContent = task.priority;
         priorityColor(task, taskPriority);
+
+        const status = document.createElement("div");
+        status.classList.add("status");
+        status.classList.add("check");
+        status.setAttribute("id", `${task.id}`);
     
-        div.append (taskName, taskDate, taskPriority);
+        div.append (taskName, taskDate, taskPriority, status);
     })
 }
 
@@ -69,6 +75,7 @@ function createNewTask(array){
     const div = document.createElement("div");
     div.classList.add("list-row");
     div.classList.add("back");
+    div.setAttribute("id", `${array.length-1}`);
     list.appendChild(div);
 
     const taskName = document.createElement("div");
@@ -84,7 +91,12 @@ function createNewTask(array){
     taskPriority.textContent = lastArray.priority;
     priorityColor(lastArray, taskPriority);
 
-    div.append (taskName, taskDate, taskPriority);
+    const status = document.createElement("div");
+    status.classList.add("status");
+    status.classList.add("check");
+    status.setAttribute("id", `${array.length-1}`);
+
+    div.append (taskName, taskDate, taskPriority, status);
 }
 
 function priorityColor(task, dom) {
@@ -97,4 +109,15 @@ function priorityColor(task, dom) {
     else if (task.priority === "Low") {
         dom.style.color = "Green";
     }
+}
+
+
+function completeTask() {
+    const check = document.querySelectorAll(".check");
+    const task = document.querySelectorAll(".list-row")
+    check.forEach((element, id) => {
+        element.addEventListener("click", (event) => {
+            task[id].remove();
+        })
+    })
 }
