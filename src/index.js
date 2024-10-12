@@ -16,16 +16,21 @@ function dom() {
 
     const submitButton = document.querySelector(".add");
     submitButton.addEventListener("click", (event) => {
-        event.preventDefault();
 
         const taskNameForm = document.querySelector("#name");
         const taskDateForm = document.querySelector("#date");
         const taskPriorityForm = document.querySelector("#priority");
-      
+
+        if (taskNameForm.value === ""){
+            return;
+        }
+        
+        event.preventDefault();
         let newTask = new ToDo(taskNameForm.value, taskDateForm.value, taskPriorityForm.value);
         addTask(newTask);
         createNewTask(toDoList);
         completeTask();
+        
     })
 
     const hideButton = document.querySelector(".hide");
