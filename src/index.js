@@ -3,8 +3,8 @@ import "./styles.css";
 
 import { ToDo, toDoList, addTask } from "./todo.js";
 
-const task1 = new ToDo("Сделай дело - гуляй смело", "20.12.24", "High");
-addTask(task1);
+//const task1 = new ToDo("Сделай дело - гуляй смело", "20.12.24", "High");
+//addTask(task1);
 dom();
 updateDom();
 
@@ -20,11 +20,8 @@ function dom() {
         event.preventDefault();
 
         const taskNameForm = document.querySelector("#name");
-        console.log(taskNameForm);
         const taskDateForm = document.querySelector("#date");
-        console.log(taskDateForm);
         const taskPriorityForm = document.querySelector("#priority");
-        console.log(taskPriorityForm);
       
         let newTask = new ToDo(taskNameForm.value, taskDateForm.value, taskPriorityForm.value);
         addTask(newTask);
@@ -56,8 +53,9 @@ function updateDom(){
         taskDate.textContent = task.date;
     
         const taskPriority = document.createElement("div");
-        taskPriority.classList.add("date");
+        taskPriority.classList.add("priority");
         taskPriority.textContent = task.priority;
+        priorityColor(task, taskPriority);
     
         div.append (taskName, taskDate, taskPriority);
     })
@@ -82,8 +80,21 @@ function createNewTask(array){
     taskDate.textContent = lastArray.date;
 
     const taskPriority = document.createElement("div");
-    taskPriority.classList.add("date");
+    taskPriority.classList.add("priority");
     taskPriority.textContent = lastArray.priority;
+    priorityColor(lastArray, taskPriority);
 
     div.append (taskName, taskDate, taskPriority);
+}
+
+function priorityColor(task, dom) {
+    if (task.priority === "High") {
+        dom.style.color = "Red";
+    }
+    else if (task.priority === "Medium") {
+        dom.style.color = "Orange";
+    }
+    else if (task.priority === "Low") {
+        dom.style.color = "Green";
+    }
 }
