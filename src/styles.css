@@ -204,6 +204,8 @@ form input {
 }
 
 form button {
+    font-family: var(--opensans);
+    font-weight: bold;
     border: none;
     background-color: var(--accent2);
     border-radius: 10px;
@@ -213,6 +215,10 @@ form button {
 .add {
     background-color: var(--accent1);
     color: var(--background);
+}
+
+.hide {
+    font-weight: 400;
 }
 
 form button:hover {

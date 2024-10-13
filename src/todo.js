@@ -1,4 +1,5 @@
-export let toDoList = [];
+export let toDoList = localStorage.getItem("tasks") ?
+JSON.parse(localStorage.getItem("tasks")) : [];
 
 export class ToDo {
     constructor(name, date, priority) {
@@ -10,4 +11,6 @@ export class ToDo {
 
 export function addTask(task) {
     toDoList.push(task);
+    localStorage.setItem(`tasks`, JSON.stringify(toDoList));
 }
+
