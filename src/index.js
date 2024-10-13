@@ -3,10 +3,10 @@ import "./styles.css";
 
 import { ToDo, toDoList, addTask, categories } from "./todo.js";
 
-let id = 0; // Для добавления айди категориям
+let id = 0; // Для добавления id категориям
 
-eventListeners();
 updateDom();
+eventListeners();
 completeTask();
 
 function eventListeners() {
@@ -21,6 +21,7 @@ function eventListeners() {
 		const taskNameForm = document.querySelector("#name");
 		const taskDateForm = document.querySelector("#date");
 		const taskPriorityForm = document.querySelector("#priority");
+        const dirName = document.querySelector("#categories");
 
 		if (taskNameForm.value === "") {
 			return;
@@ -31,10 +32,11 @@ function eventListeners() {
 		let newTask = new ToDo(
 			taskNameForm.value,
 			taskDateForm.value,
-			taskPriorityForm.value
+			taskPriorityForm.value,
+            dirName.value
 		);
 
-		addTask(newTask);
+		addTask(newTask, dirName);
 		location.reload(); // Временное решение
 		completeTask();
 	});
@@ -47,34 +49,55 @@ function eventListeners() {
 
     let id = 0;
 
-    const addDirBut = document.querySelector(".add-project");
+    const addDirBut = document.querySelector(".add-project"); // ДОБАВИТЬ КАТЕГОРИЮ
     addDirBut.addEventListener("click", (event) => {
         const categoryName = prompt("Category name: ");
 
-        if (prompt === ""){
+        if (categoryName === "" || categoryName === null){
             return;
         }
 
         categories.push(categoryName);
         localStorage.setItem(`categories`, JSON.stringify(categories));
+        localStorage.setItem(`${categoryName}`, "");
 
         location.reload(); // Временное решение
+    })
+
+    const categoriesDirs = document.querySelectorAll(".category");
+    console.log(categoriesDirs);
+
+    categoriesDirs.forEach((category) => {
+        category.addEventListener("click", (event) => {
+            toDoList.forEach((task) => {
+                if (task.dir === category.id){
+                    const allRows =  document.querySelectorAll(".list-row");
+                    allRows.forEach((row) => {
+                        row.remove();
+                    })
+
+                    addDoInDom(task);
+                }
+            })
+        })
     })
 }
 
 function updateDom() {
-	const list = document.querySelector(".todolist");
+	
 
-    categories.forEach((category) => {
+    categories.forEach((category) => { // ОТОБРАЖЕНИЕ КАТЕГОРИЙ
         console.log(categories);
         const ul = document.querySelector("ul");
         const li = document.createElement("li");
         ul.appendChild(li);
         
         const a = document.createElement("a");
-        a.setAttribute("id", `${id}`);
+        //a.setAttribute("id", `${id}`);
+        a.setAttribute("id", `${category}`)
         a.textContent = category;
-        id += 1;
+        a.classList.add("category");
+        //id += 1;
         li.appendChild(a);
 
         const categoriesSelect = document.querySelector("#categories");
@@ -84,34 +107,11 @@ function updateDom() {
         categoriesSelect.appendChild(newCat);
     })
 
-	toDoList.forEach((task) => {
-		const div = document.createElement("div");
-		div.classList.add("list-row");
-		div.classList.add("back");
-		div.setAttribute("id", `${task.id}`);
-		list.appendChild(div);
-
-		const taskName = document.createElement("div");
-		taskName.classList.add("name");
-        taskName.textContent = task.name;
-
-		const taskDate = document.createElement("div");
-		taskDate.classList.add("date");
-		taskDate.textContent = task.date;
-
-		const taskPriority = document.createElement("div");
-		taskPriority.classList.add("priority");
-		taskPriority.textContent = task.priority;
-		priorityColor(task, taskPriority);
-
-		const status = document.createElement("div");
-		status.classList.add("status");
-		status.classList.add("check");
-		status.setAttribute("id", `${task.id}`);
-
-		div.append(taskName, taskDate, taskPriority, status);
+	toDoList.forEach((task) => { // ОТОБРАЖЕНИЕ ВСЕХ ДЕЛ
+        addDoInDom(task);
 	});
 }
+
 
 function priorityColor(task, dom) {
 	if (task.priority === "High") {
@@ -132,4 +132,33 @@ function completeTask() {
             location.reload();
 		});
 	});
+}
+
+function addDoInDom(task){
+    const list = document.querySelector(".todolist");
+    const div = document.createElement("div");
+    div.classList.add("list-row");
+    div.classList.add("back");
+    div.setAttribute("id", `${task.dir}`);
+    list.appendChild(div);
+
+    const taskName = document.createElement("div");
+    taskName.classList.add("name");
+    taskName.textContent = task.name;
+
+    const taskDate = document.createElement("div");
+    taskDate.classList.add("date");
+    taskDate.textContent = task.date;
+
+    const taskPriority = document.createElement("div");
+    taskPriority.classList.add("priority");
+    taskPriority.textContent = task.priority;
+    priorityColor(task, taskPriority);
+
+    const status = document.createElement("div");
+    status.classList.add("status");
+    status.classList.add("check");
+    status.setAttribute("id", `${task.dir}`);
+
+    div.append(taskName, taskDate, taskPriority, status);
 }
