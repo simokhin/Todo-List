@@ -1,15 +1,13 @@
 import "./reset.css";
 import "./styles.css";
 
-import { ToDo, toDoList, addTask, saveData } from "./todo.js";
+import { ToDo, toDoList, addTask, categories } from "./todo.js";
 
-dom();
+eventListeners();
 updateDom();
 completeTask();
 
-const storedList = JSON.parse(localStorage.getItem(`task 0`));
-
-function dom() {
+function eventListeners() {
 	const addTaskButton = document.querySelector(".add-task-but");
 	addTaskButton.addEventListener("click", () => {
 		const addTaskForm = document.querySelector(".add-task");
@@ -43,11 +41,40 @@ function dom() {
 		const addTaskForm = document.querySelector(".add-task");
 		addTaskForm.setAttribute("style", "visibility: hidden");
 	});
+
+    let id = 0;
+
+    const addDirBut = document.querySelector(".add-project");
+    addDirBut.addEventListener("click", (event) => {
+        const categoryName = prompt("Category name: ");
+
+        if (prompt === ""){
+            return;
+        }
+
+        categories.push(categoryName);
+        localStorage.setItem(`categories`, JSON.stringify(categories));
+    })
 }
+
+let id = 0;
 
 function updateDom() {
 	const list = document.querySelector(".todolist");
 
+    categories.forEach((category) => {
+        console.log(categories);
+        const ul = document.querySelector("ul");
+        const li = document.createElement("li");
+        ul.appendChild(li);
+        
+        const a = document.createElement("a");
+        a.setAttribute("id", `${id}`);
+        a.textContent = category;
+        id += 1;
+
+        li.appendChild(a);
+    })
 
 	toDoList.forEach((task) => {
 		const div = document.createElement("div");
