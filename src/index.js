@@ -38,6 +38,7 @@ function eventListeners() {
 
 		addTask(newTask, dirName);
 		location.reload(); // Временное решение
+        updateDom();
 		completeTask();
 	});
 
@@ -131,7 +132,7 @@ function completeTask() {
             localStorage.setItem(`tasks`, JSON.stringify(toDoList));
             location.reload();
 		});
-	});
+	}); 
 }
 
 function addDoInDom(task){
