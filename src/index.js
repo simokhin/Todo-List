@@ -78,38 +78,6 @@ function updateDom() {
 	});
 }
 
-function createNewTask(array) {
-	let lastArray = array[array.length - 1];
-
-	const list = document.querySelector(".todolist");
-
-	const div = document.createElement("div");
-	div.classList.add("list-row");
-	div.classList.add("back");
-	div.setAttribute("id", `${array.length - 1}`);
-	list.appendChild(div);
-
-	const taskName = document.createElement("div");
-	taskName.classList.add("name");
-	taskName.textContent = lastArray.name;
-
-	const taskDate = document.createElement("div");
-	taskDate.classList.add("date");
-	taskDate.textContent = lastArray.date;
-
-	const taskPriority = document.createElement("div");
-	taskPriority.classList.add("priority");
-	taskPriority.textContent = lastArray.priority;
-	priorityColor(lastArray, taskPriority);
-
-	const status = document.createElement("div");
-	status.classList.add("status");
-	status.classList.add("check");
-	status.setAttribute("id", `${array.length - 1}`);
-
-	div.append(taskName, taskDate, taskPriority, status);
-}
-
 function priorityColor(task, dom) {
 	if (task.priority === "High") {
 		dom.style.color = "Red";
@@ -122,10 +90,11 @@ function priorityColor(task, dom) {
 
 function completeTask() {
 	const check = document.querySelectorAll(".check");
-	const task = document.querySelectorAll(".list-row");
 	check.forEach((element, id) => {
 		element.addEventListener("click", (event) => {
-			task[id].remove();
+            toDoList.splice(id, 1);
+            localStorage.setItem(`tasks`, JSON.stringify(toDoList));
+            location.reload();
 		});
 	});
 }
