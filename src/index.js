@@ -3,12 +3,14 @@ import "./styles.css";
 
 import { ToDo, toDoList, addTask, categories } from "./todo.js";
 
+let id = 0; // Для добавления айди категориям
+
 eventListeners();
 updateDom();
 completeTask();
 
 function eventListeners() {
-	const addTaskButton = document.querySelector(".add-task-but");
+	const addTaskButton = document.querySelector(".add-task-but"); // Кнопка для появления формы
 	addTaskButton.addEventListener("click", () => {
 		const addTaskForm = document.querySelector(".add-task");
 		addTaskForm.setAttribute("style", "visibility: visible");
@@ -25,6 +27,7 @@ function eventListeners() {
 		}
 
 		event.preventDefault();
+
 		let newTask = new ToDo(
 			taskNameForm.value,
 			taskDateForm.value,
@@ -54,10 +57,10 @@ function eventListeners() {
 
         categories.push(categoryName);
         localStorage.setItem(`categories`, JSON.stringify(categories));
+
+        location.reload(); // Временное решение
     })
 }
-
-let id = 0;
 
 function updateDom() {
 	const list = document.querySelector(".todolist");
@@ -72,8 +75,13 @@ function updateDom() {
         a.setAttribute("id", `${id}`);
         a.textContent = category;
         id += 1;
-
         li.appendChild(a);
+
+        const categoriesSelect = document.querySelector("#categories");
+        const newCat = document.createElement("option");
+        newCat.textContent = category;
+        newCat.setAttribute("value", `${category}`);
+        categoriesSelect.appendChild(newCat);
     })
 
 	toDoList.forEach((task) => {
