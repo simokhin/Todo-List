@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+<script defer src="main.js"></script></head>
+<body>
+    <section class="sidebar">
+        <div class="title">TODO LIST</div>
+        <div class="projects">
+            <div class="projects-header">
+                <h1>PROJECTS</h1>
+                <button class="add-project">+</button>
+            </div>
+            <ul>
+                <li><a href="/">Default</a></li>
+            </ul>
+        </div>
+    </section>
+    <section class="content">
+        <div class="todolist">
+            <div class="list-row-header strong">
+                <div class="name">Name</div>
+                <div class="date">Date</div>
+                <div class="priority">Priority</div>
+                <div class="status">Status</div>
+            </div>
+            <!-- <div class="list-row back">
+                <div class="name">Make some shit you know</div>
+                <div class="date">20.01.2026</div>
+                <div class="priority high">High</div>
+                <div class="status check"></div>
+            </div> -->
+        </div>
+    </section>
+    <section class="sidebar2">
+        <button class="add-task-but">ADD TASK</button>
+        <div class="add-task" style="visibility: hidden;">
+            <form>
+                <legend>ADD TASK</legend>
+                <div class="task-name">
+                    <label for="name">Task name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="task-date">
+                    <label for="date">Date</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="task-priority">
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low" selected>Low</option>
+                    </select>
+                </div>
+                <div class="category-select">
+                    <label for="priority">Category</label>
+                    <select name="categories" id="categories">
+                        <option value="default" selected>Default</option>
+                    </select>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="add">ADD</button>
+                    <button class="hide">HIDE</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
